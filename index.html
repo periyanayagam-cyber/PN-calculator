@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PN Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#071226"/>
+</head>
+<body class="theme-dark">
+  <!-- animated background canvas -->
+  <canvas id="bg"></canvas>
+
+  <div class="app">
+    <header class="topbar">
+      <div class="left">
+        <button id="themeBtn" class="icon">🌙</button>
+      </div>
+      <div class="title">PN calc</div>
+      <div class="right">
+        <button id="degBtn" class="chip">DEG</button>
+        <button id="advToggle" class="chip">ADV</button>
+      </div>
+    </header>
+
+    <main class="card">
+      <section class="display">
+        <div id="expr" class="expr"></div>
+        <div id="value" class="value">0</div>
+      </section>
+
+      <!-- primary keypad (basic + moderate) -->
+      <section id="pad" class="pad">
+        <!-- row: memory -->
+        <button class="btn small" data-action="mem" data-value="MC">MC</button>
+        <button class="btn small" data-action="mem" data-value="MR">MR</button>
+        <button class="btn small" data-action="mem" data-value="M+">M+</button>
+        <button class="btn small" data-action="mem" data-value="M-">M-</button>
+
+        <!-- row: funcs -->
+        <button class="btn ghost" data-action="clear">AC</button>
+        <button class="btn ghost" data-action="delete">DEL</button>
+        <button class="btn ghost" data-action="percent">%</button>
+        <button class="btn op" data-action="input" data-value="/">÷</button>
+
+        <!-- numbers & ops -->
+        <button class="btn" data-action="input" data-value="7">7</button>
+        <button class="btn" data-action="input" data-value="8">8</button>
+        <button class="btn" data-action="input" data-value="9">9</button>
+        <button class="btn op" data-action="input" data-value="*">×</button>
+
+        <button class="btn" data-action="input" data-value="4">4</button>
+        <button class="btn" data-action="input" data-value="5">5</button>
+        <button class="btn" data-action="input" data-value="6">6</button>
+        <button class="btn op" data-action="input" data-value="-">−</button>
+
+        <button class="btn" data-action="input" data-value="1">1</button>
+        <button class="btn" data-action="input" data-value="2">2</button>
+        <button class="btn" data-action="input" data-value="3">3</button>
+        <button class="btn op" data-action="input" data-value="+">+</button>
+
+        <button class="btn wide" data-action="input" data-value="0">0</button>
+        <button class="btn" data-action="input" data-value=".">.</button>
+        <button class="btn" data-action="input" data-value="(">(</button>
+        <button class="btn" data-action="input" data-value=")">)</button>
+
+        <button class="btn equal wide" data-action="equals">=</button>
+      </section>
+
+      <!-- history -->
+      <section class="history">
+        <div class="hist-head">
+          <h4>History</h4>
+          <button id="clearHistory" class="tiny">Clear</button>
+        </div>
+        <ul id="historyList" class="history-list"></ul>
+      </section>
+    </main>
+
+    <!-- advanced sliding panel -->
+    <aside id="advanced" class="advanced">
+      <div class="adv-grid">
+        <button class="btn adv" data-action="func" data-value="sin">sin</button>
+        <button class="btn adv" data-action="func" data-value="cos">cos</button>
+        <button class="btn adv" data-action="func" data-value="tan">tan</button>
+        <button class="btn adv" data-action="func" data-value="log">log₁₀</button>
+
+        <button class="btn adv" data-action="func" data-value="ln">ln</button>
+        <button class="btn adv" data-action="func" data-value="sqrt">√</button>
+        <button class="btn adv" data-action="func" data-value="abs">abs</button>
+        <button class="btn adv" data-action="op" data-value="^">xʸ</button>
+
+        <button class="btn adv" data-action="func" data-value="fact">x!</button>
+        <button class="btn adv" data-action="special" data-value="pi">π</button>
+        <button class="btn adv" data-action="special" data-value="e">e</button>
+        <button class="btn adv" data-action="special" data-value="rand">rnd</button>
+      </div>
+      <div class="adv-footer">
+        <button id="closeAdv" class="tiny">Close</button>
+      </div>
+    </aside>
+
+    <audio id="snd" preload="auto" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_679b4c8d36.mp3?filename=click-124467.mp3"></audio>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
